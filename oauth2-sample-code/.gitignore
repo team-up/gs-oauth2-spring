@@ -1,0 +1,16 @@
+/target
+/.classpath
+/.project
+/.springBeans
+/.settings
+/.gradle
+/bin
+/build
+/nodejs
+/node_modules
+/apidoc
+/classes
+logLocation_IS_UNDEFINED
+src/main/webapp/WEB-INF/web.xml
+.idea
+*.iml
