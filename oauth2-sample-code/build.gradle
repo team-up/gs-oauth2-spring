@@ -25,6 +25,9 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-freemarker")
     compile("com.google.guava:guava:18.0")
+
+    compile("org.apache.httpcomponents:httpclient:4.4.1")
+
     testCompile("junit:junit")
 }
 

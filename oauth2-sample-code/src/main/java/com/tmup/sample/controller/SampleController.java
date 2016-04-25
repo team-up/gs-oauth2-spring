@@ -2,6 +2,9 @@ package com.tmup.sample.controller;
 
 
 import com.google.common.base.Strings;
+import com.tmup.sample.Token;
+import com.tmup.sample.service.SampleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +25,11 @@ public class SampleController {
     @Value("${oauth.client.id}")
     private String clientId;
 
-    @Value("${oauth.client.secret}")
-    private String clientSecret;
-
     @Value("${teamup.auth}")
     private String authUrl;
+
+    @Autowired
+    SampleService sampleService;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -43,13 +46,15 @@ public class SampleController {
 
 
     @RequestMapping("/code")
-    public String code(@RequestParam String code) {
+    public String code(Model model, @RequestParam String code) {
         if (Strings.isNullOrEmpty(code)) {
             throw new IllegalArgumentException("code is empty");
         }
-
-
-        return "";
+        Token token = sampleService.getToken(code);
+        if( token !=null){
+            model.addAttribute("token", token);
+        }
+        return "pages/code";
     }
 
 
