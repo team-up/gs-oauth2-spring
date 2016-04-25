@@ -7,14 +7,12 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: "war"
 
-jar {
-    baseName = 'gs-rest-service'
-    version =  '0.1.0'
+war {
+    baseName = project.name
+    version = "0.0.1-" + new Date().format('yyyyMMdd-HHmmss')
 }
 
 repositories {
@@ -25,7 +23,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
+    compile("com.google.guava:guava:18.0")
     testCompile("junit:junit")
 }
 
